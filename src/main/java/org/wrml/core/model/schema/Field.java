@@ -97,7 +97,7 @@ public interface Field extends Named, Titled, Descriptive, Typed, SchemaMember<F
      * @see Model#setFieldToDefaultValue(String)
      * @see Model#setFieldValue(String, Object)
      */
-    public Object setDefaultValue(Object defaultValue);
+    public void setDefaultValue(Object defaultValue);
 
     /**
      * Set the "hidden" flag value of this Field.
@@ -109,7 +109,7 @@ public interface Field extends Named, Titled, Descriptive, Typed, SchemaMember<F
      * 
      * @see Field#isHidden()
      */
-    public boolean setHidden(boolean hidden);
+    public void setHidden(boolean hidden);
 
     /**
      * Set the "local" flag value of this Field.
@@ -121,7 +121,7 @@ public interface Field extends Named, Titled, Descriptive, Typed, SchemaMember<F
      * 
      * @see Field#isLocal()
      */
-    public boolean setLocal(boolean local);
+    public void setLocal(boolean local);
 
     /**
      * Set the "readOnly" flag value of this Field.
@@ -133,7 +133,7 @@ public interface Field extends Named, Titled, Descriptive, Typed, SchemaMember<F
      * 
      * @see Field#isReadOnly()
      */
-    public boolean setReadOnly(boolean readOnly);
+    public void setReadOnly(boolean readOnly);
 
     /**
      * Set the "required" flag value of this Field.
@@ -145,5 +145,5 @@ public interface Field extends Named, Titled, Descriptive, Typed, SchemaMember<F
      * 
      * @see Field#isRequired()
      */
-    public boolean setRequired(boolean required);
+    public void setRequired(boolean required);
 }

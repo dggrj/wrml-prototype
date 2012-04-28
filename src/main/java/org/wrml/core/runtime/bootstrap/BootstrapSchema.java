@@ -138,16 +138,14 @@ public class BootstrapSchema extends BootstrapDocument<Schema> {
         return serialVersionUID;
     }
 
-    public final String setDescription(String description) {
+    public final void setDescription(String description) {
         final String oldDescription = _Description;
         _Description = description;
-        return oldDescription;
     }
 
-    public final String setName(String name) {
+    public final void setName(String name) {
         final String oldName = _Name;
         _Name = name;
-        return oldName;
     }
 
     @Override

@@ -31,5 +31,5 @@ public interface Named extends Model {
     //     Constraints: TextLength - 200 characters
     public String getName();
 
-    public String setName(String name);
+    public void setName(String name);
 }

@@ -22,5 +22,5 @@ public interface MediaTypeConstraint<T extends Constrainable<T>> extends Constra
 
     public MediaType getMediaType();
 
-    public MediaType setMediaType(MediaType mediaType);
+    public void setMediaType(MediaType mediaType);
 }

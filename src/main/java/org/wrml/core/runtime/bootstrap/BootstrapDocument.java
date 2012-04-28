@@ -71,28 +71,24 @@ public class BootstrapDocument<D extends Document> extends BootstrapModel<D> {
         return _ReadOnly;
     }
 
-    public final String setEtag(String etag) {
+    public final void setEtag(String etag) {
         final String oldEtag = _Etag;
         _Etag = etag;
-        return oldEtag;
-    }
+   }
 
-    public final URI setId(URI id) {
+    public final void setId(URI id) {
         final URI oldId = _Id;
         _Id = id;
-        return oldId;
     }
 
-    public final boolean setReadOnly(boolean readOnly) {
+    public final void setReadOnly(boolean readOnly) {
         final boolean oldReadOnly = _ReadOnly;
         _ReadOnly = readOnly;
-        return oldReadOnly;
     }
 
-    public final Long setSecondsToLive(Long secondsToLive) {
+    public final void setSecondsToLive(Long secondsToLive) {
         final Long oldSecondsToLive = _SecondsToLive;
         _SecondsToLive = secondsToLive;
-        return oldSecondsToLive;
     }
 
 }

@@ -59,7 +59,7 @@ public class RequestHandler extends HttpServlet
 	    
 	    log.info("Initializing RequestHandler");
 	    
-	    mapper = new ObjectMapper();
+//	    mapper = new ObjectMapper();
 	    
 	    // Build the special context
 	    // Temp to spit out example config

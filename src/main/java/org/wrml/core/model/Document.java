@@ -40,17 +40,17 @@ public interface Document extends Model {
 
     public Long getSecondsToLive();
 
+    public void setSecondsToLive(Long secondsToLive);
+
     public Document getSelf();
 
     public boolean isReadOnly();
 
-    public String setEtag(String etag);
+    public void setEtag(String etag);
 
-    public URI setId(URI id);
+    public void setId(URI id);
 
-    public boolean setReadOnly(boolean readOnly);
-
-    public Long setSecondsToLive(Long secondsToLive);
+    public void setReadOnly(boolean readOnly);
 
     public Document update();
 

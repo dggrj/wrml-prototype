@@ -30,5 +30,5 @@ public interface ConstraintDefinition extends Named, Titled, Versioned, Descript
 
     public ObservableList<CodeOnDemand> getEnforcers();
 
-    public ConstraintType setConstraintType(ConstraintType constraintType);
+    public void setConstraintType(ConstraintType constraintType);
 }

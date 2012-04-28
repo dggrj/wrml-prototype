@@ -107,5 +107,5 @@ public interface LinkRelation extends Named, Titled, Versioned, Descriptive, Doc
      * @return the {@link Method} that used to be associated, before the caller
      *         called.
      */
-    public Method setMethod(Method method);
+    public void setMethod(Method method);
 }

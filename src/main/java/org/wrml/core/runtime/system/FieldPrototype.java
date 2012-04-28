@@ -48,7 +48,8 @@ public final class FieldPrototype extends RuntimeObject {
             break;
 
         case SET:
-            oldFieldValue = model.setFieldValue(_FieldName, newValue);
+            oldFieldValue = model.getFieldValue(_FieldName);
+            model.setFieldValue(_FieldName, newValue);
             break;
         }
 

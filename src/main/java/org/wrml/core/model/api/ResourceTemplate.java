@@ -61,7 +61,7 @@ public interface ResourceTemplate extends Versioned, Descriptive, TreeNode<Api, 
      *            the path segment String value.
      * @return the previously held value
      */
-    public String setPathSegment(String pathSegment);
+    public void setPathSegment(String pathSegment);
 
     /**
      * Set the {@link ResourceArchetype}.
@@ -72,7 +72,7 @@ public interface ResourceTemplate extends Versioned, Descriptive, TreeNode<Api, 
      * @return the ResourceArchetype that this ResourceTemplate previously
      *         resembled
      */
-    public ResourceArchetype setResourceArchetype(ResourceArchetype resourceArchetype);
+    public void setResourceArchetype(ResourceArchetype resourceArchetype);
 
     // TODO: The (half-baked) idea here was to allow resource tree nodes to override model defaults...
     // public ObservableMap<URI, ObservableList<RuntimePrototypeField>> getSchemaFieldDefaultsMap();

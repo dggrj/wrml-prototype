@@ -207,7 +207,7 @@ public interface LinkTemplate extends Versioned, Document {
      *            the id of our end point {@link ResourceTemplate}, R.
      * @return E's previous id
      */
-    public URI setEndPointId(URI endPointId);
+    public void setEndPointId(URI endPointId);
 
     /**
      * Set the id associated with the {@link LinkRelation}, which describes the
@@ -215,7 +215,7 @@ public interface LinkTemplate extends Versioned, Document {
      * 
      * @return the id of the LinkRelation.
      */
-    public URI setLinkRelationId(URI linkRelationId);
+    public void setLinkRelationId(URI linkRelationId);
 
     /**
      * If this LinkTemplate describes R---->E, then this method sets R's id.
@@ -225,6 +225,6 @@ public interface LinkTemplate extends Versioned, Document {
      *            {@link ResourceTemplate}, R.
      * @return R's previous id
      */
-    public URI setReferrerId(URI referrerId);
+    public void setReferrerId(URI referrerId);
 
 }

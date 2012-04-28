@@ -30,5 +30,5 @@ public interface Child<D extends Document> {
 
     public URI getParentId();
 
-    public URI setParentId(URI parentId);
+    public void setParentId(URI parentId);
 }

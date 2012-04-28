@@ -105,6 +105,6 @@ public interface Link extends SchemaMember<Link> {
      * 
      * @return the previously held value.
      */
-    public URI setHref(URI href);
+    public void setHref(URI href);
 
 }

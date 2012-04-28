@@ -30,6 +30,6 @@ public interface CodeOnDemand extends Named, Titled, Versioned, Descriptive, Mod
 
     public URI getCodeUri();
 
-    public URI setCodeUri(URI uri);
+    public void setCodeUri(URI uri);
 
 }

@@ -18,27 +18,30 @@ package org.wrml.core.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.servlet.ServletConfig;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.codehaus.jackson.mrbean.MrBeanModule;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wrml.core.model.api.Api;
+import org.wrml.core.model.schema.Schema;
+import org.wrml.core.model.schema.SchemaImpl;
 import org.wrml.core.runtime.Context;
-import org.wrml.core.runtime.bootstrap.DomainConfig;
-import org.wrml.core.runtime.bootstrap.WRMLConfig;
-//import org.wrml.core.service.handler.RequestHandler;
+import org.wrml.core.util.observable.ObservableList;
 
 public class ServiceConfigurator 
 {
@@ -48,7 +51,7 @@ public class ServiceConfigurator
 
 	private static final String sep = File.separator;
 	public static final String WRMLCONFIGLOCATIONTAG = "wrml.configuration.location";
-	public static final String WRMLCONFIGFILE = "wrml.config";
+	public static final String WRMLCONFIGFILE = "wrml2.config";
 	public static final String WRMLCONFIGLOCATIONDEFAULT = sep + "etc" + sep+ "wrml" + sep + WRMLCONFIGFILE;
 
 	private static ServiceConfigurator INSTANCE = null;
@@ -129,13 +132,21 @@ public class ServiceConfigurator
 	{
 		List<Service> configuredServices = new ArrayList<Service>();
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new MrBeanModule());
+		
+		mapper.getTypeFactory().constructCollectionType(ObservableList.class, URI.class);
 		
 		//BufferedReader in = new BufferedReader(new InputStreamReader(config.openStream()));
 
 		try 
 		{
 //			DomainConfig domainConfig = mapper.readValue(config, DomainConfig.class);
-			WRMLConfig wrmlConfig = mapper.readValue(config, WRMLConfig.class);
+			
+			Schema schema = mapper.readValue(config, Schema.class);
+			
+//			Api api = mapper.readValue(config, Api.class);
+			
+	/*		WRMLConfig wrmlConfig = mapper.readValue(config, WRMLConfig.class);
 			
 			for (String domain : wrmlConfig.getDomains().keySet())
 			{
@@ -163,8 +174,10 @@ public class ServiceConfigurator
 						log.info("loading service : " + service);
 					}
 				}
-			}
-			log.info("CONFIG VALUES: " + mapper.writeValueAsString(wrmlConfig));
+			}*/
+//			log.info("CONFIG VALUES: " + mapper.writeValueAsString(wrmlConfig));
+//			log.info("CONFIG VALUES: " + mapper.writeValueAsString(api));
+			log.info("CONFIG VALUES: " + mapper.writeValueAsString(schema));
 		} 
 		catch (JsonParseException e) 
 		{

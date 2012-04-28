@@ -27,5 +27,5 @@ public interface Titled extends Model {
     //     Constraints: TextLength - 500 characters
     public String getTitle();
 
-    public String setTitle(String title);
+    public void setTitle(String title);
 }

@@ -125,52 +125,44 @@ public class BootstrapField extends BootstrapModel<Field> {
         return _Required;
     }
 
-    public final Object setDefaultValue(Object defaultValue) {
+    public final void setDefaultValue(Object defaultValue) {
         final Object oldDefaultValue = _DefaultValue;
         _DefaultValue = defaultValue;
-        return oldDefaultValue;
     }
 
-    public final String setDescription(String description) {
+    public final void setDescription(String description) {
         final String oldDescription = _Description;
         _Description = description;
-        return oldDescription;
     }
 
-    public final boolean setHidden(boolean hidden) {
+    public final void setHidden(boolean hidden) {
         final boolean oldHidden = _Hidden;
         _Hidden = hidden;
-        return oldHidden;
     }
 
-    public final boolean setLocal(boolean local) {
+    public final void setLocal(boolean local) {
         final boolean oldLocal = _Local;
         _Local = local;
-        return oldLocal;
     }
 
-    public final String setName(String name) {
+    public final void setName(String name) {
         final String oldName = _Name;
         _Name = name;
-        return oldName;
     }
 
-    public final boolean setReadOnly(boolean readOnly) {
+    public final void setReadOnly(boolean readOnly) {
         final boolean oldReadOnly = _ReadOnly;
         _ReadOnly = readOnly;
-        return oldReadOnly;
     }
 
-    public final boolean setRequired(boolean required) {
+    public final void setRequired(boolean required) {
         final boolean oldRequired = _Required;
         _Required = required;
-        return oldRequired;
     }
 
-    public final String setTitle(String title) {
+    public final void setTitle(String title) {
         final String oldTitle = _Title;
         _Title = title;
-        return oldTitle;
     }
 
     @Override

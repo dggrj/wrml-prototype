@@ -491,8 +491,8 @@ public final class RuntimeModel extends RuntimeObject implements Model {
 
     }
 
-    public Object setFieldValue(String fieldName, Object newValue) {
-        return _Fields.put(fieldName, newValue);
+    public void setFieldValue(String fieldName, Object newValue) {
+        _Fields.put(fieldName, newValue);
     }
 
     @Override

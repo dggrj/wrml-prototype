@@ -27,5 +27,5 @@ public interface Descriptive extends Model {
     //     Constraints: TextLength - 1000 characters
     public String getDescription();
 
-    public String setDescription(String description);
+    public void setDescription(String description);
 }

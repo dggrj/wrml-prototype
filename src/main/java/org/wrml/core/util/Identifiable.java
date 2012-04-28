@@ -90,7 +90,7 @@ public abstract class Identifiable<I extends Comparable<I>> implements Unique<I>
         return result;
     }
 
-    public abstract I setId(I id);
+    public abstract void setId(I id);
 
     @Override
     public String toString() {

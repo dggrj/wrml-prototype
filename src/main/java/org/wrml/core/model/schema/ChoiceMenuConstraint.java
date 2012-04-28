@@ -24,6 +24,6 @@ public interface ChoiceMenuConstraint extends Constraint<Field> {
 
     public URI getMenuId();
 
-    public URI setMenuId(URI menuId);
+    public void setMenuId(URI menuId);
 
 }

@@ -284,7 +284,7 @@ public interface Model extends Serializable {
      * @see Model#getFieldValue(String)
      * @see Model#addFieldEventListener(String, FieldEventListener)
      */
-    public Object setFieldValue(String fieldName, Object fieldValue);
+    public void setFieldValue(String fieldName, Object fieldValue);
 
     /*
      * One of the fields in AlternateDimensions should be Locale.

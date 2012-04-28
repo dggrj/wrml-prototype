@@ -17,7 +17,11 @@
 package org.wrml.core.model.schema;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.wrml.core.model.Descriptive;
 import org.wrml.core.model.Document;
 import org.wrml.core.model.Named;
