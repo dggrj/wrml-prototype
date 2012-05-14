@@ -41,6 +41,7 @@ import org.wrml.core.model.api.Api;
 import org.wrml.core.model.schema.Schema;
 import org.wrml.core.model.schema.SchemaImpl;
 import org.wrml.core.runtime.Context;
+import org.wrml.core.util.observable.DelegatingObservableList;
 import org.wrml.core.util.observable.ObservableList;
 
 public class ServiceConfigurator 
@@ -134,7 +135,7 @@ public class ServiceConfigurator
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new MrBeanModule());
 		
-		mapper.getTypeFactory().constructCollectionType(ObservableList.class, URI.class);
+//		mapper.getTypeFactory().constructCollectionType(DelegatingObservableList.class, URI.class);
 		
 		//BufferedReader in = new BufferedReader(new InputStreamReader(config.openStream()));
 

@@ -246,6 +246,10 @@ public class JsonParserModelGraphReader extends FieldIterativeModelGraphReader {
         if (token == JsonToken.VALUE_STRING) {
             return _JsonParser.getText();
         }
+        else if (token == JsonToken.VALUE_NULL)
+        {
+        	return "";
+        }
 
         throw new IllegalStateException("Cannot read Text from a token of type: " + token + "\" (\""
                 + _JsonParser.getText() + "\"");

@@ -28,8 +28,11 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.apache.http.MethodNotSupportedException;
+import org.mockito.internal.util.ArrayUtils;
 import org.wrml.core.util.Delegating;
 import org.wrml.core.util.DelegatingInvocationHandler;
+import org.wrml.utils.UtilityFunctions;
 
 public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object>, InvocationHandler {
 
@@ -48,6 +51,9 @@ public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object
         _Delegate = delegate;
         _StaticInterfaceClass = staticInterfaceClass;
         _DelegatingInvocationHandler = new DelegatingInvocationHandler(delegate);
+        
+        _FieldNameToGetMethod = new TreeMap<String, Method>();
+        _FieldNameToSetMethod = new TreeMap<String, Method>();        
     }
 
     public final Object getDelegate() {
@@ -194,27 +200,8 @@ public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object
         return typeSystem.getNativeReturnType(method, _StaticInterfaceClass);
     }
 
-    protected final Method getMethod(FieldAccessType fieldAccessType, String fieldName) {
-
-        if (fieldAccessType == FieldAccessType.GET) {
-            if (_FieldNameToGetMethod == null) {
-                _FieldNameToGetMethod = new TreeMap<String, Method>();
-            }
-
-            if (_FieldNameToGetMethod.containsKey(fieldName)) {
-                return _FieldNameToGetMethod.get(fieldName);
-            }
-        }
-        else if (fieldAccessType == FieldAccessType.SET) {
-            if (_FieldNameToSetMethod == null) {
-                _FieldNameToSetMethod = new TreeMap<String, Method>();
-            }
-
-            if (_FieldNameToSetMethod.containsKey(fieldName)) {
-                return _FieldNameToSetMethod.get(fieldName);
-            }
-        }
-
+    protected final Method getMethod(FieldAccessType fieldAccessType, String fieldName)
+    {
         final String fieldNameAsMixedUpperCase = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
         final String methodName = fieldAccessType.toString() + fieldNameAsMixedUpperCase;
         final String booleanIsMethodName = "is" + fieldNameAsMixedUpperCase;
@@ -222,25 +209,36 @@ public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object
          * First, leverage the mapping work already done by the
          * DelegatingInvocationHandler
          */
-
         final Map<String, Method> delegateMethods = getDelegatingInvocationHandler().getDelegateMethods();
 
         Method method = null;
 
-        if (fieldAccessType == FieldAccessType.GET) {
-            method = delegateMethods.get(methodName + "()");
-            if (method == null) {
-                method = delegateMethods.get(booleanIsMethodName + "()");
+        if (fieldAccessType == FieldAccessType.GET)
+        {
+        	if (_FieldNameToGetMethod.containsKey(fieldName)) {
+                return _FieldNameToGetMethod.get(fieldName);
+            } else {
+            	method = delegateMethods.get(methodName + "()");
+            	if (method == null) {
+            		method = delegateMethods.get(booleanIsMethodName + "()");
+            	}
             }
         }
-        else if (fieldAccessType == FieldAccessType.SET) {
-            final Set<String> methodKeys = delegateMethods.keySet();
-            for (final String fullMethodKey : methodKeys) {
-                if (fullMethodKey.startsWith(methodName)) {
-                    method = delegateMethods.get(fullMethodKey);
-                    break;
-                }
+        else if (fieldAccessType == FieldAccessType.SET)
+        {
+        	if (_FieldNameToSetMethod.containsKey(fieldName)) {
+                return _FieldNameToSetMethod.get(fieldName);
+            } else {
+            	final Set<String> methodKeys = delegateMethods.keySet();
+            	for (final String fullMethodKey : methodKeys) {
+            		if (fullMethodKey.startsWith(methodName)) {
+            			method = delegateMethods.get(fullMethodKey);
+            			break;
+            		}
+            	}
             }
+        } else {
+        	return null;
         }
 
         final T staticInterface = getStaticInterface();
@@ -257,8 +255,8 @@ public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object
                 final String staticInterfaceMethodName = staticInterfaceMethod.getName();
 
                 if (staticInterfaceMethodName.equals(methodName)
-                        || staticInterfaceMethodName.equals(booleanIsMethodName)) {
-
+                        || staticInterfaceMethodName.equals(booleanIsMethodName))
+                {
                     method = staticInterfaceMethod;
                     break;
                 }
@@ -267,7 +265,6 @@ public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object
 
         if (fieldAccessType == FieldAccessType.GET) {
             _FieldNameToGetMethod.put(fieldName, method);
-
         }
         else if (fieldAccessType == FieldAccessType.SET) {
             _FieldNameToSetMethod.put(fieldName, method);
@@ -307,7 +304,7 @@ public class ReflectiveFieldMap<T> extends FieldMap implements Delegating<Object
 
     @Override
     protected boolean isReadOnly(String fieldName) {
-        return getMethod(FieldAccessType.SET, fieldName) == null;
+        return (getMethod(FieldAccessType.SET, fieldName) == null);
     }
 
     @Override

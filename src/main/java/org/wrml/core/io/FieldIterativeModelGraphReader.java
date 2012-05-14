@@ -51,8 +51,9 @@ public abstract class FieldIterativeModelGraphReader extends EventSource<EventLi
      * Reads the root of a ModelGraph by iterating over a linear sequence/stream
      * of (possibly nested) models with fields.
      */
-    public ModelGraph readModelGraph(Context context, java.lang.reflect.Type nativeType) throws Exception {
-
+    public ModelGraph readModelGraph(Context context, java.lang.reflect.Type nativeType)
+   		throws Exception
+    {
         final Event<FieldIterativeModelGraphReader> event = new Event<FieldIterativeModelGraphReader>(this);
 
         /*

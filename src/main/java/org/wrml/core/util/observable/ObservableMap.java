@@ -18,6 +18,9 @@ package org.wrml.core.util.observable;
 
 import java.util.Map;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
+@JsonDeserialize(as=DelegatingObservableMap.class)
 public interface ObservableMap<K, V> extends Map<K, V> {
 
     public boolean addEventListener(MapEventListener listener);

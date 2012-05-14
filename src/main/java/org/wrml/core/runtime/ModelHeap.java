@@ -102,7 +102,7 @@ public final class ModelHeap extends RuntimeObject {
         if (fieldMap instanceof ModelFieldMap) {
             // Tie the knot
             ((ModelFieldMap) fieldMap).setModel(runtimeModel);
-        }
+        } //else??
 
         // Put everything in its right place
         final Model model = shardModel(runtimeModel);

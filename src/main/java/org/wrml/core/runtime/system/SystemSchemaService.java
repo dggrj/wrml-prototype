@@ -41,7 +41,8 @@ import org.wrml.core.www.MediaType;
 /**
  * The WRML equivalent of the SystemClassLoader.
  */
-public final class SystemSchemaService extends ProxyService implements Service {
+public final class SystemSchemaService extends ProxyService
+{
 
     public static final String SCHEMA_NAMESPACE = "org.wrml.core.model.schema";
 

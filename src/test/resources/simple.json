@@ -2,12 +2,20 @@
     "name": "Story",
     "version": 1,
     "description": "An example Story schema",
-    "fields": {
-        "example": {
-            "id": "example",
-            "type": "Text",
-            "description": "An example property.",
-            "title": "Example"
-        }
-    }
+    "fields": [
+	    {
+		    "type": "Text",
+		    "constraints": [
+		    
+		    ],
+		    "defaultValue": null,
+		    "description": "The description.",
+		    "hidden": false,
+		    "name": "description",
+		    "readOnly": false,
+		    "required": false,
+		    "title": "Description",
+		    "local": false
+	    }
+    ]
 }

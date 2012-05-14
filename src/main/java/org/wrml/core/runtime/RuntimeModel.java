@@ -78,6 +78,16 @@ public final class RuntimeModel extends RuntimeObject implements Model {
     private transient EventSource<ModelEventListener> _ModelEventSource;
     private transient Map<String, EventSource<FieldEventListener>> _FieldEventSources;
 
+    /**
+     * Why is this allowing a modelGraph to come in (which has a context) and also a context to be passed?
+     * Especially when the only place calling it (currently) gets that context from the MG.  Will that not
+     * always be the case?
+     * @param context
+     * @param nativeType
+     * @param modelGraph
+     * @param fieldMap
+     * @param linkMap
+     */
     RuntimeModel(Context context, java.lang.reflect.Type nativeType, ModelGraph modelGraph, FieldMap fieldMap,
             Map<URI, Hyperlink> linkMap) {
         super(context);

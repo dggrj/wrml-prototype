@@ -18,6 +18,9 @@ package org.wrml.core.util.observable;
 
 import java.util.List;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
+@JsonDeserialize(as=DelegatingObservableList.class)
 public interface ObservableList<E> extends List<E> {
 
     public boolean addEventListener(ListEventListener listEventListener);
